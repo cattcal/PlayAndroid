@@ -1,0 +1,19 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.ext.compileVersion
+
+    resourcePrefix "widget_"
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion rootProject.ext.targetVersion
+    }
+}
+
+dependencies {
+    implementation "androidx.appcompat:appcompat:$rootProject.ext.appcompatVersion"
+    implementation "com.google.android.material:material:$rootProject.ext.materialVersion"
+    // 基础库（不包任何第三方框架）
+    implementation project(':base')
+}

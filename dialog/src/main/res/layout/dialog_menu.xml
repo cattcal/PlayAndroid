@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/dialog_menu_width"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|bottom"
+    android:orientation="vertical"
+    tools:context=".MenuDialog">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_menu_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/dialog_message_bg"
+        android:overScrollMode="never"
+        tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_menu" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_menu_cancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_menu_item_height"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/dialog_menu_item"
+        android:focusable="true"
+        android:gravity="center"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:singleLine="true"
+        android:text="@string/dialog_cancel"
+        android:textColor="@color/dialog_cancel"
+        android:textSize="14sp" />
+
+</LinearLayout>

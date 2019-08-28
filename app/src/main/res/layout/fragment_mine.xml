@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical">
+
+    <cn.hujw.titlebar.library.TitleBar
+        android:id="@+id/tb_mine"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:backButton="false"
+        app:title="我的" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_dialog"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入对话框案例" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_hint"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入界面状态案例" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_login"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入登录界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_register"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入注册界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_forget"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入忘记密码" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_reset"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入重置密码" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_verify"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入校验手机" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_change"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入重置手机" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_personal"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入个人界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_setting"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入设置界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_about"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入关于界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_browser"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入浏览器界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_image"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入查看大图界面" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_mine_crash"
+                style="@style/ButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="点我进入崩溃捕捉界面" />
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

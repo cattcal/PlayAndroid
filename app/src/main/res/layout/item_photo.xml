@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cn.hujw.widget.square.SquareFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <cn.hujw.widget.view.ScaleImageView
+        android:id="@+id/iv_photo_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:scaleType="centerCrop"
+        app:scaleRatio="0.95"
+        tools:src="@drawable/ic_logo" />
+
+    <FrameLayout
+        android:id="@+id/fl_photo_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:paddingLeft="20dp"
+        android:paddingTop="3dp"
+        android:paddingRight="3dp"
+        android:paddingBottom="20dp">
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/iv_photo_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+
+    </FrameLayout>
+
+</cn.hujw.widget.square.SquareFrameLayout>

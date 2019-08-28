@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cn.hujw.titlebar.library.TitleBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="@string/personal_data_title" />
+
+    <FrameLayout
+        android:id="@+id/fl_person_data_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_selectable_white"
+        android:paddingTop="20dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="26dp"
+        android:paddingRight="20dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/personal_data_head"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_person_data_avatar"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/ic_head_placeholder" />
+
+    </FrameLayout>
+
+    <cn.hujw.widget.layout.SettingBar
+        android:id="@+id/sb_person_data_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
+        app:bar_leftText="@string/personal_data_id"
+        app:bar_rightText="888888" />
+
+    <cn.hujw.widget.layout.SettingBar
+        android:id="@+id/sb_person_data_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/personal_data_name"
+        app:bar_rightHint="@string/personal_data_name_hint"
+        app:bar_rightText="Android 一只傻傻牛" />
+
+    <cn.hujw.widget.layout.SettingBar
+        android:id="@+id/sb_person_data_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:bar_leftText="@string/personal_data_address"
+        app:bar_rightHint="@string/personal_data_address_hint"
+        app:bar_rightIcon="@drawable/ico_go_black"
+        app:bar_rightText="北京北京市朝阳区" />
+
+    <cn.hujw.widget.layout.SettingBar
+        android:id="@+id/sb_person_data_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        app:bar_leftText="@string/personal_data_phone"
+        app:bar_rightHint="@string/personal_data_phone_hint"
+        app:bar_rightIcon="@drawable/ico_go_black" />
+
+</LinearLayout>
