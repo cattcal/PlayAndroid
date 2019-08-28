@@ -111,7 +111,7 @@ android {
 
         // Apk 输出配置
         variant.outputs.all { output ->
-            def appName = "AndroidProject"
+            def appName = "PlayAndroid"
             if (variant.buildType.name == 'debug') {
                 outputFileName = appName + '_v' + versionName + '_' + variant.buildType.name + '.apk'
             } else {
