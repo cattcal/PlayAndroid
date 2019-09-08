@@ -347,13 +347,14 @@ public final class AddressDialog {
                     (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()),
                     (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 20, getResources().getDisplayMetrics()),
                     (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 10, getResources().getDisplayMetrics()));
-            return new ViewHolder(textView);
+            return new ViewHolder(textView) {
+                @Override
+                public void onBindView(int position) {
+                    ((TextView)itemView).setText(getItem(position).getName());
+                }
+            };
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull BaseRecyclerViewAdapter.ViewHolder holder, int position) {
-            ((TextView) holder.itemView).setText(getItem(position).getName());
-        }
     }
 
     private static final class AddressBean {

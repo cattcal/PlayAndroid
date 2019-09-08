@@ -200,11 +200,26 @@ public final class PayPasswordDialog {
         public BaseRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             switch (viewType) {
                 case TYPE_DELETE:
-                    return new BaseRecyclerViewAdapter.ViewHolder(parent, R.layout.item_pay_password_delete);
+                    return new ViewHolder(parent, R.layout.item_pay_password_delete) {
+                        @Override
+                        public void onBindView(int position) {
+
+                        }
+                    };
                 case TYPE_EMPTY:
-                    return new BaseRecyclerViewAdapter.ViewHolder(parent, R.layout.item_pay_password_empty);
+                    return new ViewHolder(parent, R.layout.item_pay_password_empty) {
+                        @Override
+                        public void onBindView(int position) {
+
+                        }
+                    };
                 default:
-                    return new BaseRecyclerViewAdapter.ViewHolder(parent, R.layout.item_pay_password_normal);
+                    return new ViewHolder(parent, R.layout.item_pay_password_normal) {
+                        @Override
+                        public void onBindView(int position) {
+
+                        }
+                    };
             }
         }
 

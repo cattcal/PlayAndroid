@@ -29,6 +29,9 @@ public final class InputTextHelper implements TextWatcher {
     /** TextView集合 */
     private List<TextView> mViewSet;
 
+    /** 输入监听器 */
+    private OnInputChangeListener mListener;
+
     /**
      * 构造函数
      *
@@ -71,7 +74,7 @@ public final class InputTextHelper implements TextWatcher {
         }
 
         // 触发一次监听
-        traverseInput();
+        notifyChanged();
     }
 
     /**
@@ -96,7 +99,7 @@ public final class InputTextHelper implements TextWatcher {
             }
         }
         // 触发一次监听
-        traverseInput();
+        notifyChanged();
     }
 
     /**
@@ -109,7 +112,7 @@ public final class InputTextHelper implements TextWatcher {
                 mViewSet.remove(view);
             }
             // 触发一次监听
-            traverseInput();
+            notifyChanged();
         }
     }
 
@@ -129,6 +132,13 @@ public final class InputTextHelper implements TextWatcher {
     }
 
     /**
+     * 设置输入监听
+     */
+    public void setListener(OnInputChangeListener listener) {
+        mListener = listener;
+    }
+
+    /**
      * {@link TextWatcher}
      */
 
@@ -140,17 +150,18 @@ public final class InputTextHelper implements TextWatcher {
 
     @Override
     public void afterTextChanged(Editable s) {
-        traverseInput();
+        notifyChanged();
     }
 
     /**
-     * 遍历所有的输入
+     * 通知更新
      */
-    public void traverseInput() {
+    public void notifyChanged() {
         if (mViewSet == null) {
             return;
         }
 
+        // 重新遍历所有的输入
         for (TextView view : mViewSet) {
             if ("".equals(view.getText().toString())) {
                 setEnabled(false);
@@ -158,7 +169,11 @@ public final class InputTextHelper implements TextWatcher {
             }
         }
 
-        setEnabled(true);
+        if (mListener != null) {
+            setEnabled(mListener.onInputChange(this));
+        } else {
+            setEnabled(true);
+        }
     }
 
     /**
@@ -200,9 +215,16 @@ public final class InputTextHelper implements TextWatcher {
         private final List<TextView> mViewSet = new ArrayList<>();
         /** 文本输入辅助类 */
         private InputTextHelper mTextHelper;
+        /** 文本 */
+        private OnInputChangeListener mListener;
 
         private Builder(Activity activity) {
             mActivity = activity;
+        }
+
+        public Builder addView(TextView view) {
+            mViewSet.add(view);
+            return this;
         }
 
         public Builder setMain(View view) {
@@ -215,14 +237,15 @@ public final class InputTextHelper implements TextWatcher {
             return this;
         }
 
-        public Builder addView(TextView view) {
-            mViewSet.add(view);
+        public Builder setListener(OnInputChangeListener listener) {
+            mListener = listener;
             return this;
         }
 
         public InputTextHelper build(){
             mTextHelper = new InputTextHelper(mView, isAlpha);
             mTextHelper.addViews(mViewSet);
+            mTextHelper.setListener(mListener);
             mActivity.getApplication().registerActivityLifecycleCallbacks(new TextInputLifecycle(mActivity, mTextHelper));
             return mTextHelper;
         }
@@ -265,5 +288,17 @@ public final class InputTextHelper implements TextWatcher {
                 mActivity = null;
             }
         }
+    }
+
+    /**
+     * 文本变化监听器
+     */
+    public interface OnInputChangeListener {
+
+        /**
+         * 输入发生了变化
+         * @return          返回按钮的 Enabled 状态
+         */
+        boolean onInputChange(InputTextHelper helper);
     }
 }

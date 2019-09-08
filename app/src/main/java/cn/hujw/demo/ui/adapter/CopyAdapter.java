@@ -14,7 +14,7 @@ import cn.hujw.demo.common.MyRecyclerViewAdapter;
  * @description: 可进行拷贝的副本
  * @email: hujw_android@163.com
  */
-public class CopyAdapter extends MyRecyclerViewAdapter<String, CopyAdapter.ViewHolder> {
+public class CopyAdapter extends MyRecyclerViewAdapter<String> {
 
 
     public CopyAdapter(Context context) {
@@ -27,10 +27,7 @@ public class CopyAdapter extends MyRecyclerViewAdapter<String, CopyAdapter.ViewH
         return new ViewHolder(parent);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-    }
 
     @Override
     public int getItemCount() {
@@ -42,6 +39,11 @@ public class CopyAdapter extends MyRecyclerViewAdapter<String, CopyAdapter.ViewH
 
         ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_copy);
+        }
+
+        @Override
+        public void onBindView(int position) {
+
         }
     }
 }

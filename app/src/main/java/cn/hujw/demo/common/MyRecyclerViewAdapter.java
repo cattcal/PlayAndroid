@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 
 import com.hjq.toast.ToastUtils;
@@ -21,11 +22,11 @@ import cn.hujw.image.ImageLoader;
 /**
  * @author: hujw
  * @date: 2019/8/19
- * @description: 项目中 ListView 适配器基类
+ * @description: 项目中 RecyclerView 适配器基类
  * @email: hujw_android@163.com
  */
-public abstract class MyRecyclerViewAdapter<T, VH extends MyRecyclerViewAdapter.ViewHolder>
-        extends BaseRecyclerViewAdapter<T, VH> {
+public abstract class MyRecyclerViewAdapter<T>
+        extends BaseRecyclerViewAdapter<T, MyRecyclerViewAdapter.ViewHolder> {
 
     /** 当前列表的页码，默认为第一页，用于分页加载功能 */
     private int mPageNumber = 1;
@@ -95,7 +96,7 @@ public abstract class MyRecyclerViewAdapter<T, VH extends MyRecyclerViewAdapter.
         ToastUtils.show(object);
     }
 
-    public class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+    public abstract class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
 
         public ViewHolder(ViewGroup parent, int layoutId) {
             super(parent, layoutId);
@@ -106,6 +107,7 @@ public abstract class MyRecyclerViewAdapter<T, VH extends MyRecyclerViewAdapter.
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+
 
         public final ViewHolder setText(@IdRes int viewId, @StringRes int stringId) {
             return setText(viewId, getString(stringId));

@@ -136,28 +136,6 @@ public final class MenuDialog {
             return new ViewHolder(parent);
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.mTextView.setText(getItem(position).toString());
-
-            if (position == 0) {
-                // 当前是否只有一个条目
-                if (getItemCount() == 1) {
-                    holder.itemView.setBackgroundResource(R.drawable.dialog_menu_item);
-                    holder.mView.setVisibility(View.GONE);
-                } else {
-                    holder.itemView.setBackgroundResource(R.drawable.dialog_menu_item_top);
-                    holder.mView.setVisibility(View.VISIBLE);
-                }
-            } else if (position == getItemCount() - 1) {
-                holder.itemView.setBackgroundResource(R.drawable.dialog_menu_item_bottom);
-                holder.mView.setVisibility(View.GONE);
-            } else {
-                holder.itemView.setBackgroundResource(R.drawable.dialog_menu_item_middle);
-                holder.mView.setVisibility(View.VISIBLE);
-            }
-        }
-
         final class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
 
             private final TextView mTextView;
@@ -167,6 +145,28 @@ public final class MenuDialog {
                 super(parent, R.layout.item_menu);
                 mTextView = (TextView) findViewById(R.id.tv_menu_name);
                 mView = findViewById(R.id.v_menu_line);
+            }
+
+            @Override
+            public void onBindView(int position) {
+                mTextView.setText(getItem(position).toString());
+
+                if (position == 0) {
+                    // 当前是否只有一个条目
+                    if (getItemCount() == 1) {
+                       itemView.setBackgroundResource(R.drawable.dialog_menu_item);
+                       mView.setVisibility(View.GONE);
+                    } else {
+                        itemView.setBackgroundResource(R.drawable.dialog_menu_item_top);
+                        mView.setVisibility(View.VISIBLE);
+                    }
+                } else if (position == getItemCount() - 1) {
+                    itemView.setBackgroundResource(R.drawable.dialog_menu_item_bottom);
+                   mView.setVisibility(View.GONE);
+                } else {
+                    itemView.setBackgroundResource(R.drawable.dialog_menu_item_middle);
+                    mView.setVisibility(View.VISIBLE);
+                }
             }
         }
     }

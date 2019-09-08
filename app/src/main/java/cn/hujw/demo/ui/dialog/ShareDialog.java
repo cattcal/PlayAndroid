@@ -126,12 +126,6 @@ public final class ShareDialog {
             return new ViewHolder(parent);
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            ShareBean bean = getItem(position);
-            holder.mImageView.setImageDrawable(bean.getShareIcon());
-            holder.mTextView.setText(bean.getShareName());
-        }
 
         final class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
 
@@ -142,6 +136,13 @@ public final class ShareDialog {
                 super(parent, R.layout.item_share);
                 mImageView = (ImageView) findViewById(R.id.iv_share_image);
                 mTextView = (TextView) findViewById(R.id.tv_share_text);
+            }
+
+            @Override
+            public void onBindView(int position) {
+                ShareBean bean = getItem(position);
+                mImageView.setImageDrawable(bean.getShareIcon());
+                mTextView.setText(bean.getShareName());
             }
         }
     }

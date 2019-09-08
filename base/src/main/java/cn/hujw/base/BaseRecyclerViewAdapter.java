@@ -212,10 +212,15 @@ public abstract class BaseRecyclerViewAdapter
         return ContextCompat.getDrawable(mContext, id);
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull VH holder, int position) {
+        holder.onBindView(position);
+    }
+
     /**
      * 条目ViewHolder，需要子类ViewHolder继承
      */
-    public class ViewHolder extends RecyclerView.ViewHolder
+    public abstract class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
         public ViewHolder(ViewGroup parent, int layoutId) {
@@ -226,6 +231,8 @@ public abstract class BaseRecyclerViewAdapter
             super(itemView);
             initViewListener();
         }
+
+        public abstract void onBindView(int position);
 
         /**
          * 初始化 View 的监听

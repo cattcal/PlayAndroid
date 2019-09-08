@@ -22,7 +22,7 @@ import cn.hujw.image.ImageLoader;
  * @description: 图片选择适配器
  * @email: hujw_android@163.com
  */
-public final class PhotoAdapter extends MyRecyclerViewAdapter<String, PhotoAdapter.ViewHolder> {
+public final class PhotoAdapter extends MyRecyclerViewAdapter<String> {
 
     private final List<String> mSelectPhoto;
 
@@ -37,14 +37,6 @@ public final class PhotoAdapter extends MyRecyclerViewAdapter<String, PhotoAdapt
         return new ViewHolder(parent);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ImageLoader.with(getContext())
-                .load(getItem(position))
-                .into(holder.mImageView);
-
-        holder.mCheckBox.setChecked(mSelectPhoto.contains(getItem(position)));
-    }
 
     final class ViewHolder extends MyRecyclerViewAdapter.ViewHolder {
 
@@ -55,6 +47,15 @@ public final class PhotoAdapter extends MyRecyclerViewAdapter<String, PhotoAdapt
 
         ViewHolder(ViewGroup parent) {
             super(parent, R.layout.item_photo);
+        }
+
+        @Override
+        public void onBindView(int position) {
+            ImageLoader.with(getContext())
+                    .load(getItem(position))
+                    .into(mImageView);
+
+            mCheckBox.setChecked(mSelectPhoto.contains(getItem(position)));
         }
     }
 

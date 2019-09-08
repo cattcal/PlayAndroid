@@ -113,19 +113,6 @@ public final class AlbumDialog {
             return new ViewHolder(parent);
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            AlbumBean bean = getItem(position);
-
-            ImageLoader.with(getContext())
-                    .load(bean.getIcon())
-                    .into(holder.mIconView);
-
-            holder.mNameView.setText(bean.getName());
-            holder.mCountView.setText(String.format(getString(R.string.photo_total), bean.getCount()));
-            holder.mCheckView.setChecked(bean.isSelect());
-        }
-
         final class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
 
             private final ImageView mIconView;
@@ -139,6 +126,19 @@ public final class AlbumDialog {
                 mNameView = (TextView) findViewById(R.id.tv_album_name);
                 mCountView = (TextView) findViewById(R.id.tv_album_count);
                 mCheckView = (RadioButton) findViewById(R.id.rb_album_check);
+            }
+
+            @Override
+            public void onBindView(int position) {
+                AlbumBean bean = getItem(position);
+
+                ImageLoader.with(getContext())
+                        .load(bean.getIcon())
+                        .into(mIconView);
+
+                mNameView.setText(bean.getName());
+                mCountView.setText(String.format(getString(R.string.photo_total), bean.getCount()));
+                mCheckView.setChecked(bean.isSelect());
             }
         }
     }
