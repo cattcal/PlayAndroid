@@ -18,6 +18,7 @@ import cn.hujw.base.BaseDialog;
 import cn.hujw.base.BaseDialogFragment;
 import cn.hujw.demo.BuildConfig;
 import cn.hujw.demo.R;
+import cn.hujw.demo.common.AppConfig;
 import cn.hujw.demo.common.MyActivity;
 import cn.hujw.demo.ui.dialog.PayPasswordDialog;
 import cn.hujw.demo.ui.dialog.ShareDialog;
@@ -306,7 +307,7 @@ public final class DialogActivity extends MyActivity {
                 break;
             case R.id.btn_dialog_update:
                 // 本地的版本码和服务器的进行比较
-                if (20 > BuildConfig.VERSION_CODE) {
+                if (20 > AppConfig.getVersionCode()) {
 
                     new UpdateDialog.Builder(this)
                             // 版本名
