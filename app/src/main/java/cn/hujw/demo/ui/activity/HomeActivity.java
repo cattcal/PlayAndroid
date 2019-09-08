@@ -31,7 +31,7 @@ public class HomeActivity extends MyActivity implements ViewPager.OnPageChangeLi
         KeyboardWatcher.SoftKeyboardStateListener {
 
     @BindView(R.id.vp_home_pager)
-    ViewPager mViewPager;
+    NoScrollViewPager mViewPager;
     @BindView(R.id.bv_home_navigation)
     BottomNavigationView mBottomNavigationView;
 
@@ -67,7 +67,7 @@ public class HomeActivity extends MyActivity implements ViewPager.OnPageChangeLi
         mViewPager.setAdapter(mPagerAdapter);
 
         // 限制页面数量
-        mViewPager.setOffscreenPageLimit(mPagerAdapter.getCount());
+        mViewPager.setOffscreenPageLimit(mViewPager.getCount());
     }
 
     @Override
@@ -114,25 +114,16 @@ public class HomeActivity extends MyActivity implements ViewPager.OnPageChangeLi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_home:
-                //mViewPager.setCurrentItem(0);
-                //mViewPager.setCurrentItem(0, false);
-                // 如果切换的是相邻之间的 Item 就显示切换动画，如果不是则不要动画
-                mViewPager.setCurrentItem(0, mViewPager.getCurrentItem() == 1);
+                mViewPager.setCurrentItem(0);
                 return true;
             case R.id.home_found:
-                //mViewPager.setCurrentItem(1);
-                //mViewPager.setCurrentItem(1, false);
-                mViewPager.setCurrentItem(1, mViewPager.getCurrentItem() == 0 || mViewPager.getCurrentItem() == 2);
+                mViewPager.setCurrentItem(1);
                 return true;
             case R.id.home_message:
-                //mViewPager.setCurrentItem(2);
-                //mViewPager.setCurrentItem(2, false);
-                mViewPager.setCurrentItem(2, mViewPager.getCurrentItem() == 1 || mViewPager.getCurrentItem() == 3);
+                mViewPager.setCurrentItem(2);
                 return true;
             case R.id.home_me:
-                //mViewPager.setCurrentItem(3);
-                //mViewPager.setCurrentItem(3, false);
-                mViewPager.setCurrentItem(3, mViewPager.getCurrentItem() == 2);
+                mViewPager.setCurrentItem(3);
                 return true;
             default:
                 break;
