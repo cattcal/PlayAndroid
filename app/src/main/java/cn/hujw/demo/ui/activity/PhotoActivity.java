@@ -36,6 +36,7 @@ import cn.hujw.base.BaseDialog;
 import cn.hujw.base.BaseRecyclerViewAdapter;
 import cn.hujw.demo.BuildConfig;
 import cn.hujw.demo.R;
+import cn.hujw.demo.common.AppConfig;
 import cn.hujw.demo.common.MyActivity;
 import cn.hujw.demo.other.IntentKey;
 import cn.hujw.demo.other.PhotoSpaceDecoration;
@@ -451,7 +452,7 @@ public class PhotoActivity extends MyActivity implements BaseRecyclerViewAdapter
                 Uri imageUri;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     // 通过 FileProvider 创建一个 Content 类型的 Uri 文件
-                    imageUri = FileProvider.getUriForFile(this, BuildConfig.APPLICATION_ID + ".provider", file);
+                    imageUri = FileProvider.getUriForFile(this, AppConfig.getPackageName() + ".provider", file);
                 } else {
                     imageUri = Uri.fromFile(file);
                 }

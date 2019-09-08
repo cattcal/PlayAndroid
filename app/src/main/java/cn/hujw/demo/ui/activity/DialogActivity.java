@@ -305,22 +305,22 @@ public final class DialogActivity extends MyActivity {
                         .show();
                 break;
             case R.id.btn_dialog_update:
-//                // 本地的版本码和服务器的进行比较
-//                if (20 > BuildConfig.VERSION_CODE) {
-//
-//                    new UpdateDialog.Builder(this)
-//                            // 版本名
-//                            .setVersionName("v 2.0")
-//                            // 文件大小
-//                            .setFileSize("10 M")
-//                            // 是否强制更新
-//                            .setForceUpdate(false)
-//                            // 更新日志
-//                            .setUpdateLog("到底更新了啥\n到底更新了啥\n到底更新了啥\n到底更新了啥\n到底更新了啥")
-//                            // 下载 url
-//                            .setDownloadUrl("https://raw.githubusercontent.com/getActivity/AndroidProject/master/AndroidProject.apk")
-//                            .show();
-//                }
+                // 本地的版本码和服务器的进行比较
+                if (20 > BuildConfig.VERSION_CODE) {
+
+                    new UpdateDialog.Builder(this)
+                            // 版本名
+                            .setVersionName("v 2.0")
+                            // 文件大小
+                            .setFileSize("10 M")
+                            // 是否强制更新
+                            .setForceUpdate(false)
+                            // 更新日志
+                            .setUpdateLog("到底更新了啥\n到底更新了啥\n到底更新了啥\n到底更新了啥\n到底更新了啥")
+                            // 下载 url
+                            .setDownloadUrl("https://raw.githubusercontent.com/getActivity/AndroidProject/master/AndroidProject.apk")
+                            .show();
+                }
                 break;
             case R.id.btn_dialog_share:
                 toast("记得改好第三方 AppID 和 AppKey，否则会调不起来哦");

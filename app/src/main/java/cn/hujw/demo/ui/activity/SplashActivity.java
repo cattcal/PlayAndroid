@@ -16,6 +16,7 @@ import java.util.List;
 import butterknife.BindView;
 import cn.hujw.demo.BuildConfig;
 import cn.hujw.demo.R;
+import cn.hujw.demo.common.AppConfig;
 import cn.hujw.demo.common.MyActivity;
 
 /**
@@ -72,7 +73,7 @@ public class SplashActivity extends MyActivity implements OnPermission, Animatio
 
     @Override
     protected void initData() {
-        if (BuildConfig.DEBUG) {
+        if (AppConfig.isDebug()) {
             mDebugView.setVisibility(View.VISIBLE);
         } else {
             mDebugView.setVisibility(View.INVISIBLE);
