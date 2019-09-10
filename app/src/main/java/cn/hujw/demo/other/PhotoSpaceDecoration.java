@@ -23,8 +23,7 @@ public final class PhotoSpaceDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
-    }
+    public void onDraw(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {}
 
     @SuppressWarnings("all")
     @Override
@@ -47,6 +46,5 @@ public final class PhotoSpaceDecoration extends RecyclerView.ItemDecoration {
     }
 
     @Override
-    public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {
-    }
+    public void onDrawOver(@NonNull Canvas canvas, @NonNull RecyclerView recyclerView, @NonNull RecyclerView.State state) {}
 }

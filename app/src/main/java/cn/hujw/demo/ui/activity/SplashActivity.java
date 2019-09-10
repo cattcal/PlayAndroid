@@ -14,9 +14,8 @@ import com.hjq.permissions.XXPermissions;
 import java.util.List;
 
 import butterknife.BindView;
-import cn.hujw.demo.BuildConfig;
 import cn.hujw.demo.R;
-import cn.hujw.demo.common.AppConfig;
+import cn.hujw.demo.other.AppConfig;
 import cn.hujw.demo.common.MyActivity;
 
 /**

@@ -1,4 +1,4 @@
-package cn.hujw.demo.common;
+package cn.hujw.demo.other;
 
 
 import cn.hujw.demo.BuildConfig;
