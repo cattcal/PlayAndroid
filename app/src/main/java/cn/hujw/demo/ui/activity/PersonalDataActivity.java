@@ -11,8 +11,8 @@ import butterknife.OnClick;
 import cn.hujw.base.BaseDialog;
 import cn.hujw.demo.R;
 import cn.hujw.demo.common.MyActivity;
-import cn.hujw.dialog.AddressDialog;
-import cn.hujw.dialog.InputDialog;
+import cn.hujw.demo.ui.dialog.AddressDialog;
+import cn.hujw.demo.ui.dialog.InputDialog;
 import cn.hujw.image.ImageLoader;
 import cn.hujw.widget.layout.SettingBar;
 

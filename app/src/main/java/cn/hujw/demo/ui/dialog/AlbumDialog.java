@@ -5,6 +5,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import cn.hujw.base.BaseDialog;
 import cn.hujw.base.BaseRecyclerViewAdapter;
 import cn.hujw.demo.R;
 import cn.hujw.demo.common.MyDialogFragment;
+import cn.hujw.demo.common.MyRecyclerViewAdapter;
 import cn.hujw.image.ImageLoader;
 
 /**
@@ -41,15 +43,10 @@ public final class AlbumDialog {
         public Builder(FragmentActivity activity) {
             super(activity);
 
-            mRecyclerView = new RecyclerView(activity);
-            mRecyclerView.setLayoutAnimation(AnimationUtils.loadLayoutAnimation(getActivity(), R.anim.layout_animation_from_bottom));
-            mRecyclerView.setBackgroundResource(R.drawable.dialog_rounded_corner_bg);
-            mRecyclerView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getResources().getDisplayMetrics().heightPixels / 2));
+            setContentView(R.layout.dialog_album);
+            setHeight(getResources().getDisplayMetrics().heightPixels / 2);
 
-            setContentView(mRecyclerView);
-            setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
-            setGravity(Gravity.BOTTOM);
-
+            mRecyclerView = findViewById(R.id.rv_album_list);
             mAdapter = new AlbumAdapter(activity);
             mAdapter.setOnItemClickListener(this);
             mRecyclerView.setAdapter(mAdapter);
@@ -66,8 +63,8 @@ public final class AlbumDialog {
             return this;
         }
 
-        public Builder setListener(OnListener l) {
-            mListener = l;
+        public Builder setListener(OnListener listener) {
+            mListener = listener;
             return this;
         }
 
@@ -101,7 +98,7 @@ public final class AlbumDialog {
         }
     }
 
-    private static final class AlbumAdapter extends BaseRecyclerViewAdapter<AlbumBean, AlbumAdapter.ViewHolder> {
+    private static final class AlbumAdapter extends MyRecyclerViewAdapter<AlbumBean> {
 
         private AlbumAdapter(Context context) {
             super(context);
@@ -110,22 +107,22 @@ public final class AlbumDialog {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(parent);
+            return new ViewHolder();
         }
 
-        final class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+        final class ViewHolder extends MyRecyclerViewAdapter.ViewHolder {
 
             private final ImageView mIconView;
             private final TextView mNameView;
             private final TextView mCountView;
-            private final RadioButton mCheckView;
+            private final CheckBox mCheckBox;
 
-            private ViewHolder(ViewGroup parent) {
-                super(parent, R.layout.item_album);
+            private ViewHolder() {
+                super(R.layout.item_album);
                 mIconView = (ImageView) findViewById(R.id.iv_album_icon);
                 mNameView = (TextView) findViewById(R.id.tv_album_name);
                 mCountView = (TextView) findViewById(R.id.tv_album_count);
-                mCheckView = (RadioButton) findViewById(R.id.rb_album_check);
+                mCheckBox = (CheckBox) findViewById(R.id.rb_album_check);
             }
 
             @Override
@@ -138,7 +135,8 @@ public final class AlbumDialog {
 
                 mNameView.setText(bean.getName());
                 mCountView.setText(String.format(getString(R.string.photo_total), bean.getCount()));
-                mCheckView.setChecked(bean.isSelect());
+                mCheckBox.setChecked(bean.isSelect());
+                mCheckBox.setVisibility(bean.isSelect() ? View.VISIBLE : View.INVISIBLE);
             }
         }
     }

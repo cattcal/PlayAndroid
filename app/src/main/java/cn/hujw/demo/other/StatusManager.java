@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import cn.hujw.base.BaseDialog;
 import cn.hujw.demo.R;
-import cn.hujw.dialog.WaitDialog;
+import cn.hujw.demo.ui.dialog.WaitDialog;
 import cn.hujw.widget.layout.HintLayout;
 
 import static android.Manifest.permission.ACCESS_NETWORK_STATE;

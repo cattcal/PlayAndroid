@@ -14,4 +14,9 @@
     <color name="colorButtonDisable">#BBBBBB</color>
     <!-- 分割线的颜色 -->
     <color name="colorLine">#ECECEC</color>
+
+    <!-- 对话框确认按钮文本颜色 -->
+    <color name="colorConfirm">@color/orange</color>
+    <!-- 对话框取消按钮文本颜色 -->
+    <color name="colorCancel">#F44336</color>
 </resources>

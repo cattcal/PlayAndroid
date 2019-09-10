@@ -10,7 +10,7 @@ import cn.hujw.demo.R;
 import cn.hujw.demo.common.MyActivity;
 import cn.hujw.demo.helper.ActivityStackManager;
 import cn.hujw.demo.helper.CacheDataManager;
-import cn.hujw.dialog.MenuDialog;
+import cn.hujw.demo.ui.dialog.MenuDialog;
 import cn.hujw.image.ImageLoader;
 import cn.hujw.widget.layout.SettingBar;
 import cn.hujw.widget.view.SwitchButton;

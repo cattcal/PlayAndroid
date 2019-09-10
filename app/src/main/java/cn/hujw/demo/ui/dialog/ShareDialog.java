@@ -36,7 +36,7 @@ public final class ShareDialog {
 
     public static final class Builder
             extends MyDialogFragment.Builder<Builder>
-            implements MyRecyclerViewAdapter.OnItemClickListener {
+            implements BaseRecyclerViewAdapter.OnItemClickListener {
 
         private final ShareAdapter mAdapter;
         private final RecyclerView mRecyclerView;
@@ -92,8 +92,8 @@ public final class ShareDialog {
             return this;
         }
 
-        public Builder setListener(UmengShare.OnShareListener l) {
-            mListener = l;
+        public Builder setListener(UmengShare.OnShareListener listener) {
+            mListener = listener;
             return this;
         }
 
@@ -114,7 +114,7 @@ public final class ShareDialog {
         }
     }
 
-    private static class ShareAdapter extends BaseRecyclerViewAdapter<ShareBean, ShareAdapter.ViewHolder> {
+    private static class ShareAdapter extends MyRecyclerViewAdapter<ShareBean> {
 
         private ShareAdapter(Context context) {
             super(context);
@@ -123,17 +123,16 @@ public final class ShareDialog {
         @NonNull
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-            return new ViewHolder(parent);
+            return new ViewHolder();
         }
 
-
-        final class ViewHolder extends BaseRecyclerViewAdapter.ViewHolder {
+        final class ViewHolder extends MyRecyclerViewAdapter.ViewHolder {
 
             private ImageView mImageView;
             private TextView mTextView;
 
-            private ViewHolder(ViewGroup parent) {
-                super(parent, R.layout.item_share);
+            private ViewHolder() {
+                super(R.layout.item_share);
                 mImageView = (ImageView) findViewById(R.id.iv_share_image);
                 mTextView = (TextView) findViewById(R.id.tv_share_text);
             }
@@ -150,28 +149,28 @@ public final class ShareDialog {
     private static class ShareBean {
 
         /** 分享图标 */
-        private final Drawable mShareIcon;
+        private final Drawable shareIcon;
         /** 分享名称 */
-        private final String mShareName;
+        private final String shareName;
         /** 分享平台 */
-        private final Platform mSharePlatform;
+        private final Platform sharePlatform;
 
         private ShareBean(Drawable icon, String name, Platform platform) {
-            mShareIcon = icon;
-            mShareName = name;
-            mSharePlatform = platform;
+            shareIcon = icon;
+            shareName = name;
+            sharePlatform = platform;
         }
 
         private Drawable getShareIcon() {
-            return mShareIcon;
+            return shareIcon;
         }
 
         private String getShareName() {
-            return mShareName;
+            return shareName;
         }
 
         private Platform getSharePlatform() {
-            return mSharePlatform;
+            return sharePlatform;
         }
     }
 }

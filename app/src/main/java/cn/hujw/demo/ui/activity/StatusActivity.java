@@ -5,7 +5,7 @@ import androidx.core.content.ContextCompat;
 import cn.hujw.base.BaseDialog;
 import cn.hujw.demo.R;
 import cn.hujw.demo.common.MyActivity;
-import cn.hujw.dialog.MenuDialog;
+import cn.hujw.demo.ui.dialog.MenuDialog;
 
 /**
  * @author: hujw

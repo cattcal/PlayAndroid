@@ -20,6 +20,27 @@
 
     <string name="common_loading">加载中&#8230;</string>
 
+    <string name="common_confirm">确定</string>
+    <string name="common_cancel">取消</string>
+
+    <string name="common_year">年</string>
+    <string name="common_month">月</string>
+    <string name="common_day">日</string>
+
+    <string name="common_hour">时</string>
+    <string name="common_minute">分</string>
+    <string name="common_second">秒</string>
+
+    <!-- 地区对话框 -->
+    <string name="address_title">请选择地区</string>
+    <string name="address_hint">请选择</string>
+
+    <!-- 日期对话框 -->
+    <string name="date_title">请选择日期</string>
+
+    <!-- 时间对话框 -->
+    <string name="time_title">请选择时间</string>
+
     <!-- 升级对话框 -->
     <string name="update_app">升级</string>
 
@@ -31,6 +52,8 @@
     <string name="update_status_failed">下载失败</string>
     <string name="update_status_paused">暂停中</string>
     <string name="update_status_pending">等待下载</string>
+
+    <string name="update_no_update">当前已是最新版本</string>
 
     <!-- 分享对话框 -->
     <string name="share_title">分享到&#8230;</string>
@@ -69,8 +92,8 @@
     <string name="register_title">注册</string>
     <string name="register_hint">手机号仅用于登录和保护账号安全</string>
     <string name="register_login">登录</string>
-    <string name="register_password_hint1">设置密码</string>
-    <string name="register_password_hint2">再次输入密码</string>
+    <string name="register_password_hint1">设置6&#8211;18位登录密码</string>
+    <string name="register_password_hint2">请再次输入一次密码</string>
     <string name="register_password_input_error">两次密码输入不一致，请重新输入</string>
 
     <!-- 设置 -->
@@ -89,7 +112,9 @@
 
     <!-- 关于 -->
     <string name="about_title">关于我们</string>
-    <string name="about_copyright">Copyright © 2019</string><!--&Copyright © 2018 #8211; 2019-->
+    <string name="about_author"><font color="#85b84f">Android</font> 轮子哥</string>
+
+    <string name="about_copyright">Copyright © 2018 &#8211; 2019</string>
 
     <!-- 忘记密码 -->
     <string name="password_forget_title">忘记密码</string>
@@ -150,5 +175,4 @@
 
     <string name="photo_launch_fail">无法启动相机</string>
     <string name="photo_picture_error">图片错误</string>
-
 </resources>

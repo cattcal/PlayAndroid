@@ -41,30 +41,19 @@ import cn.hujw.demo.widget.NumberProgressBar;
  */
 public final class UpdateDialog {
 
-    /**
-     *
-     */
     public static final class Builder
             extends MyDialogFragment.Builder<Builder>
-            implements OnDownloadListener, OnPermission {
+            implements OnDownloadListener, OnPermission,
+            View.OnClickListener {
 
-        @BindView(R.id.tv_update_name)
-        TextView mNameView;
-        @BindView(R.id.tv_update_size)
-        TextView mSizeView;
-        @BindView(R.id.tv_update_content)
-        TextView mContentView;
-        @BindView(R.id.pb_update_progress)
-        NumberProgressBar mProgressView;
+        private TextView mNameView;
+        private TextView mSizeView;
+        private TextView mContentView;
+        private NumberProgressBar mProgressView;
 
-        @BindView(R.id.tv_update_update)
-        TextView mUpdateView;
-
-        @BindView(R.id.ll_update_cancel)
-        ViewGroup mCancelLayout;
-
-        @BindView(R.id.iv_update_close)
-        View mCloseView;
+        private TextView mUpdateView;
+        private ViewGroup mCancelLayout;
+        private View mCloseView;
 
         /** 下载地址 */
         private String mDownloadUrl;
@@ -81,6 +70,18 @@ public final class UpdateDialog {
             setContentView(R.layout.dialog_update);
             setAnimStyle(BaseDialog.AnimStyle.BOTTOM);
             setCancelable(false);
+
+            mNameView = findViewById(R.id.tv_update_name);
+            mSizeView = findViewById(R.id.tv_update_size);
+            mContentView = findViewById(R.id.tv_update_content);
+            mProgressView = findViewById(R.id.pb_update_progress);
+
+            mUpdateView = findViewById(R.id.tv_update_update);
+            mCancelLayout = findViewById(R.id.ll_update_cancel);
+            mCloseView = findViewById(R.id.iv_update_close);
+
+            mUpdateView.setOnClickListener(this);
+            mCloseView.setOnClickListener(this);
         }
 
         /**
@@ -180,35 +181,28 @@ public final class UpdateDialog {
             }
         }
 
-        @OnClick({R.id.iv_update_close, R.id.tv_update_update})
+        @Override
         public void onClick(View v) {
-            switch (v.getId()) {
-                // 点击了下次再说
-                case R.id.iv_update_close:
-                    dismiss();
-                    break;
-                // 点击了更新按钮
-                case R.id.tv_update_update:
-                    // 判断下载状态
-                    switch (mDownloadStatus) {
-                        // 没有任何状态
-                        case -1:
-                            // 下载失败
-                        case DownloadManager.STATUS_FAILED:
-                            // 重新下载
-                            requestPermission();
-                            break;
-                        // 下载成功
-                        case DownloadManager.STATUS_SUCCESSFUL:
-                            // 安装 Apk
-                            mDownloadHandler.openDownloadFile();
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-                default:
-                    break;
+            if (v == mCloseView) {
+                dismiss();
+            } else if (v == mUpdateView) {
+                // 判断下载状态
+                switch (mDownloadStatus) {
+                    // 没有任何状态
+                    case -1:
+                        // 下载失败
+                    case DownloadManager.STATUS_FAILED:
+                        // 重新下载
+                        requestPermission();
+                        break;
+                    // 下载成功
+                    case DownloadManager.STATUS_SUCCESSFUL:
+                        // 安装 Apk
+                        mDownloadHandler.openDownloadFile();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -277,8 +271,8 @@ public final class UpdateDialog {
             mDownloadManager = (DownloadManager) mContext.getSystemService(Context.DOWNLOAD_SERVICE);
         }
 
-        private void setDownloadListener(OnDownloadListener l) {
-            this.mListener = l;
+        private void setDownloadListener(OnDownloadListener listener) {
+            mListener = listener;
         }
 
         @Override

@@ -33,10 +33,9 @@ public final class PhotoAdapter extends MyRecyclerViewAdapter<String> {
 
     @NonNull
     @Override
-    public PhotoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(parent);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new ViewHolder();
     }
-
 
     final class ViewHolder extends MyRecyclerViewAdapter.ViewHolder {
 
@@ -45,8 +44,8 @@ public final class PhotoAdapter extends MyRecyclerViewAdapter<String> {
         @BindView(R.id.iv_photo_check)
         CheckBox mCheckBox;
 
-        ViewHolder(ViewGroup parent) {
-            super(parent, R.layout.item_photo);
+        ViewHolder() {
+            super(R.layout.item_photo);
         }
 
         @Override

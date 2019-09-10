@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import androidx.annotation.ColorRes;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.IdRes;
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
@@ -27,15 +28,10 @@ import java.util.List;
  * @description: RecyclerView 适配器基类
  * @email: hujw_android@163.com
  */
-public abstract class BaseRecyclerViewAdapter
-        <T, VH extends BaseRecyclerViewAdapter.ViewHolder>
-        extends RecyclerView.Adapter<VH> {
+public abstract class BaseRecyclerViewAdapter<VH extends BaseRecyclerViewAdapter.ViewHolder> extends RecyclerView.Adapter<VH> {
 
     /** 上下文对象 */
     private final Context mContext;
-
-    /** 列表数据 */
-    private List<T> mDataSet;
 
     /** RecyclerView 对象 */
     private RecyclerView mRecyclerView;
@@ -57,117 +53,13 @@ public abstract class BaseRecyclerViewAdapter
     }
 
     @Override
-    public int getItemCount() {
-        return mDataSet == null ? 0 : mDataSet.size();
-    }
-
-    @Override
     public long getItemId(int position) {
         return position;
     }
 
-    /**
-     * 设置新的数据
-     */
-    public void setData(List<T> data) {
-        mDataSet = data;
-        notifyDataSetChanged();
-    }
-
-    /**
-     * 获取当前数据
-     */
-    @Nullable
-    public List<T> getData() {
-        return mDataSet;
-    }
-
-    /**
-     * 追加一些数据
-     */
-    public void addData(List<T> data) {
-        if (data == null || data.size() == 0) {
-            return;
-        }
-
-        if (mDataSet == null || mDataSet.size() == 0) {
-            setData(data);
-        } else {
-            mDataSet.addAll(data);
-            notifyItemRangeInserted(mDataSet.size() - data.size(), data.size());
-        }
-    }
-
-    /**
-     * 清空当前数据
-     */
-    public void clearData() {
-        if (mDataSet == null || mDataSet.size() == 0) {
-            return;
-        }
-
-        mDataSet.clear();
-        notifyDataSetChanged();
-    }
-
-    /**
-     * 获取某个位置上的数据
-     */
-    public T getItem(int position) {
-        return mDataSet.get(position);
-    }
-
-    /**
-     * 更新某个位置上的数据
-     */
-    public void setItem(int position, T item) {
-        if (mDataSet == null) {
-            mDataSet = new ArrayList<>();
-        }
-        mDataSet.set(position, item);
-        notifyItemChanged(position);
-    }
-
-    /**
-     * 添加单条数据
-     */
-    public void addItem(T item) {
-        if (mDataSet == null) {
-            mDataSet = new ArrayList<>();
-        }
-
-        addItem(mDataSet.size(), item);
-    }
-
-    public void addItem(int position, T item) {
-        if (mDataSet == null) {
-            mDataSet = new ArrayList<>();
-        }
-
-        if (position < mDataSet.size()) {
-            mDataSet.add(position, item);
-        } else {
-            mDataSet.add(item);
-            position = mDataSet.size() - 1;
-        }
-        notifyItemInserted(position);
-    }
-
-    /**
-     * 删除单条数据
-     */
-    public void removeItem(T item) {
-        int index = mDataSet.indexOf(item);
-        if (index != -1) {
-            removeItem(index);
-        }
-    }
-
-    public void removeItem(int position) {
-        //如果是在for循环删除后要记得i--
-        mDataSet.remove(position);
-        //告诉适配器删除数据的位置，会有动画效果
-        notifyItemRemoved(position);
+    @Override
+    public void onBindViewHolder(@NonNull VH holder, int position) {
+        holder.onBindView(position);
     }
 
     /**
@@ -178,7 +70,7 @@ public abstract class BaseRecyclerViewAdapter
     }
 
     /**
-     * 获取上下文对象，注意不要在构造方法中调用
+     * 获取上下文对象
      */
     public Context getContext() {
         return mContext;
@@ -212,32 +104,18 @@ public abstract class BaseRecyclerViewAdapter
         return ContextCompat.getDrawable(mContext, id);
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull VH holder, int position) {
-        holder.onBindView(position);
-    }
-
     /**
-     * 条目ViewHolder，需要子类ViewHolder继承
+     * 条目 ViewHolder，需要子类 ViewHolder 继承
      */
     public abstract class ViewHolder extends RecyclerView.ViewHolder
             implements View.OnClickListener, View.OnLongClickListener {
 
-        public ViewHolder(ViewGroup parent, int layoutId) {
-            this(LayoutInflater.from(parent.getContext()).inflate(layoutId, parent, false));
+        public ViewHolder(@LayoutRes int id) {
+            this(LayoutInflater.from(getContext()).inflate(id, getRecyclerView(), false));
         }
 
         public ViewHolder(View itemView) {
             super(itemView);
-            initViewListener();
-        }
-
-        public abstract void onBindView(int position);
-
-        /**
-         * 初始化 View 的监听
-         */
-        private void initViewListener() {
 
             // 设置条目的点击和长按事件
             if (mItemClickListener != null) {
@@ -265,6 +143,8 @@ public abstract class BaseRecyclerViewAdapter
                 }
             }
         }
+
+        public abstract void onBindView(int position);
 
         /**
          * {@link View.OnClickListener}
@@ -351,39 +231,39 @@ public abstract class BaseRecyclerViewAdapter
     /**
      * 设置RecyclerView条目点击监听
      */
-    public void setOnItemClickListener(OnItemClickListener l) {
+    public void setOnItemClickListener(OnItemClickListener listener) {
         checkRecyclerViewState();
-        mItemClickListener = l;
+        mItemClickListener = listener;
     }
 
     /**
      * 设置 RecyclerView 条目子 View 点击监听
      */
-    public void setOnChildClickListener(@IdRes int id, OnChildClickListener l) {
+    public void setOnChildClickListener(@IdRes int id, OnChildClickListener listener) {
         checkRecyclerViewState();
         if (mChildClickListeners == null) {
             mChildClickListeners = new SparseArray<>();
         }
-        mChildClickListeners.put(id, l);
+        mChildClickListeners.put(id, listener);
     }
 
     /**
      * 设置RecyclerView条目长按监听
      */
-    public void setOnItemLongClickListener(OnItemLongClickListener l) {
+    public void setOnItemLongClickListener(OnItemLongClickListener listener) {
         checkRecyclerViewState();
-        mItemLongClickListener = l;
+        mItemLongClickListener = listener;
     }
 
     /**
      * 设置 RecyclerView 条目子 View 长按监听
      */
-    public void setOnChildLongClickListener(@IdRes int id, OnChildLongClickListener l) {
+    public void setOnChildLongClickListener(@IdRes int id, OnChildLongClickListener listener) {
         checkRecyclerViewState();
         if (mChildLongClickListeners == null) {
             mChildLongClickListeners = new SparseArray<>();
         }
-        mChildLongClickListeners.put(id, l);
+        mChildLongClickListeners.put(id, listener);
     }
 
     private void checkRecyclerViewState() {
@@ -396,8 +276,8 @@ public abstract class BaseRecyclerViewAdapter
     /**
      * 设置RecyclerView条目滚动监听
      */
-    public void setOnScrollingListener(OnScrollingListener l) {
-        mScrollingListener = l;
+    public void setOnScrollingListener(OnScrollingListener listener) {
+        mScrollingListener = listener;
 
         //如果当前已经有设置滚动监听，再次设置需要移除原有的监听器
         if (mScrollListener == null) {

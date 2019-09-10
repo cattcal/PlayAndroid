@@ -144,8 +144,6 @@ dependencies {
     implementation project(':base')
     // 自定义 View
     implementation project(':widget')
-    // Dialog 封装
-    implementation project(':dialog')
     // Glide 隔离
     implementation project(':image')
     // 友盟隔离

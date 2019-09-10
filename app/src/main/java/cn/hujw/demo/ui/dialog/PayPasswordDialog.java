@@ -34,7 +34,8 @@ public final class PayPasswordDialog {
 
     public static final class Builder
             extends MyDialogFragment.Builder<Builder>
-            implements MyRecyclerViewAdapter.OnItemClickListener {
+            implements BaseRecyclerViewAdapter.OnItemClickListener,
+            View.OnClickListener {
 
         /** 输入键盘文本 */
         private static final String[] KEYBOARD_TEXT = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", ""};
@@ -43,27 +44,33 @@ public final class PayPasswordDialog {
         private boolean mAutoDismiss = true;
         private final LinkedList<String> mRecordList = new LinkedList<>();
 
-        @BindView(R.id.tv_pay_title)
-        TextView mTitleView;
-        @BindView(R.id.iv_pay_close)
-        ImageView mCloseView;
+        private final TextView mTitleView;
+        private final ImageView mCloseView;
 
-        @BindView(R.id.tv_pay_sub_title)
-        TextView mSubTitleView;
-        @BindView(R.id.tv_pay_money)
-        TextView mMoneyView;
+        private final TextView mSubTitleView;
+        private final TextView mMoneyView;
 
-        @BindView(R.id.pw_pay_view)
-        PasswordView mPasswordView;
+        private final PasswordView mPasswordView;
 
-        @BindView(R.id.rv_pay_list)
-        RecyclerView mRecyclerView;
+        private final RecyclerView mRecyclerView;
 
         private final KeyboardAdapter mAdapter;
 
         public Builder(FragmentActivity activity) {
             super(activity);
             setContentView(R.layout.dialog_pay_password);
+            setCancelable(false);
+
+            mTitleView = findViewById(R.id.tv_pay_title);
+            mCloseView = findViewById(R.id.iv_pay_close);
+
+            mSubTitleView = findViewById(R.id.tv_pay_sub_title);
+            mMoneyView = findViewById(R.id.tv_pay_money);
+
+            mPasswordView = findViewById(R.id.pw_pay_view);
+            mRecyclerView = findViewById(R.id.rv_pay_list);
+
+            mCloseView.setOnClickListener(this);
 
             mRecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
             mAdapter = new KeyboardAdapter(getContext());
@@ -104,8 +111,8 @@ public final class PayPasswordDialog {
             return this;
         }
 
-        public Builder setListener(OnListener l) {
-            mListener = l;
+        public Builder setListener(OnListener listener) {
+            mListener = listener;
             return this;
         }
 
@@ -156,9 +163,9 @@ public final class PayPasswordDialog {
             mPasswordView.setPassWordLength(mRecordList.size());
         }
 
-        @OnClick(R.id.iv_pay_close)
+        @Override
         public void onClick(View v) {
-            if (v.getId() == R.id.iv_pay_close) {
+            if (v == mCloseView) {
                 if (mAutoDismiss) {
                     dismiss();
                 }
@@ -170,7 +177,7 @@ public final class PayPasswordDialog {
         }
     }
 
-    private static final class KeyboardAdapter extends BaseRecyclerViewAdapter<String, BaseRecyclerViewAdapter.ViewHolder> {
+    private static final class KeyboardAdapter extends MyRecyclerViewAdapter<String> {
 
         /** 数字按钮条目 */
         private static final int TYPE_NORMAL = 0;
@@ -197,37 +204,29 @@ public final class PayPasswordDialog {
 
         @NonNull
         @Override
-        public BaseRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public MyRecyclerViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             switch (viewType) {
                 case TYPE_DELETE:
-                    return new ViewHolder(parent, R.layout.item_pay_password_delete) {
-                        @Override
-                        public void onBindView(int position) {
-
-                        }
-                    };
+                    return new MyRecyclerViewAdapter.SimpleHolder(R.layout.item_pay_password_delete);
                 case TYPE_EMPTY:
-                    return new ViewHolder(parent, R.layout.item_pay_password_empty) {
-                        @Override
-                        public void onBindView(int position) {
-
-                        }
-                    };
+                    return new MyRecyclerViewAdapter.SimpleHolder(R.layout.item_pay_password_empty);
                 default:
-                    return new ViewHolder(parent, R.layout.item_pay_password_normal) {
-                        @Override
-                        public void onBindView(int position) {
-
-                        }
-                    };
+                    return new KeyboardAdapter.ViewHolder();
             }
         }
 
-        @Override
-        public void onBindViewHolder(@NonNull BaseRecyclerViewAdapter.ViewHolder holder, int position) {
-            if (holder.getItemView() instanceof TextView) {
-                // 给数字按钮设置文本
-                ((TextView) holder.getItemView()).setText(getItem(position));
+        final class ViewHolder extends MyRecyclerViewAdapter.ViewHolder {
+
+            private final TextView mTextView;
+
+            ViewHolder() {
+                super(R.layout.item_pay_password_normal);
+                mTextView = (TextView) getItemView();
+            }
+
+            @Override
+            public void onBindView(int position) {
+                mTextView.setText(getItem(position));
             }
         }
     }

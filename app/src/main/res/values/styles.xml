@@ -90,4 +90,11 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <!-- 圆形 CardView 样式 -->
+    <style name="CircleCardViewStyle" parent="Base.CardView">
+        <item name="cardElevation">0px</item>
+        <item name="cardBackgroundColor">#00000000</item>
+        <item name="cardCornerRadius">999dp</item>
+    </style>
+
 </resources>

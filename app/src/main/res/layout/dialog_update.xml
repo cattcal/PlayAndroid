@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/bg_dialog_update_bottom"
+        android:background="@drawable/selector_update_bottom"
         android:orientation="vertical">
 
         <LinearLayout
@@ -59,7 +59,7 @@
             android:textSize="13sp"
             tools:text="更新内容" />
 
-        <com.hjq.demo.widget.NumberProgressBar
+        <cn.hujw.demo.widget.NumberProgressBar
             android:id="@+id/pb_update_progress"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,7 +82,7 @@
             android:layout_marginTop="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginBottom="15dp"
-            android:background="@drawable/bg_dialog_update_button"
+            android:background="@drawable/selector_update_button"
             android:focusable="true"
             android:gravity="center"
             android:paddingTop="10dp"
