@@ -14,17 +14,17 @@ import androidx.appcompat.widget.AppCompatImageView;
  * @description: 自动播放帧动画的 ImageView
  * @email: hujw_android@163.com
  */
-public final class AnimationImageView extends AppCompatImageView {
+public final class AnimImageView extends AppCompatImageView {
 
-    public AnimationImageView(Context context) {
+    public AnimImageView(Context context) {
         super(context);
     }
 
-    public AnimationImageView(Context context, @Nullable AttributeSet attrs) {
+    public AnimImageView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public AnimationImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public AnimImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
