@@ -10,7 +10,7 @@ import cn.hujw.widget.R;
 /**
  * @author: hujw
  * @date: 2019/9/11
- * @description:
+ * @description: 按照比例显示的 FrameLayout
  * @email: hujw_android@163.com
  */
 public final class RatioFrameLayout extends FrameLayout {
