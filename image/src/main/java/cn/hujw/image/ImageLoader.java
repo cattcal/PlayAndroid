@@ -41,7 +41,7 @@ public final class ImageLoader {
      * @param application               上下文对象
      * @param factory                   图片加载器生成对象
      */
-    public static void init(@NonNull Application application, @NonNull ImageFactory factory) {
+    public static void init(@NonNull Application application,@NonNull ImageFactory factory) {
         sImageFactory = factory;
         sImageStrategy = factory.createImageStrategy();
         sPlaceholder = factory.createPlaceholder(application);
@@ -73,8 +73,7 @@ public final class ImageLoader {
     final Object context;
     int circle;
     String url;
-    @DrawableRes
-    int resourceId;
+    @DrawableRes int resourceId;
     boolean isGif;
 
     Drawable placeholder = sPlaceholder;
