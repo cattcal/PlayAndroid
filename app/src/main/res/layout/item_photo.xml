@@ -24,13 +24,16 @@
         android:paddingRight="3dp"
         android:paddingBottom="20dp">
 
-        <com.google.android.material.checkbox.MaterialCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/iv_photo_check"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@null"
+            android:button="@drawable/selector_checkbox"
             android:clickable="false"
             android:focusable="false"
             android:focusableInTouchMode="false" />
+
 
     </FrameLayout>
 

@@ -46,12 +46,15 @@
 
     </LinearLayout>
 
-    <com.google.android.material.radiobutton.MaterialRadioButton
+    <androidx.appcompat.widget.AppCompatCheckBox
         android:id="@+id/rb_album_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@null"
+        android:button="@drawable/selector_checkbox"
         android:clickable="false"
         android:focusable="false"
         android:focusableInTouchMode="false" />
-
 </LinearLayout>
