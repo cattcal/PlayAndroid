@@ -16,44 +16,52 @@ public final class UmengLogin {
 
     public static final class LoginData {
 
+        /** 用户 id */
+        private final String mId;
         /** 昵称 */
-        private final String name;
+        private final String mName;
         /** 性别 */
-        private final String sex;
+        private final String mSex;
         /** 头像 */
-        private final String icon;
-        /** id */
-        private final String id;
-        /** token */
-        private final String token;
+        private final String mIcon;
+        /** Token */
+        private final String mToken;
 
+        @SuppressWarnings("all")
         LoginData(Map<String, String> data) {
             // 第三方登录获取用户资料：https://developer.umeng.com/docs/66632/detail/66639#h3-u83B7u53D6u7528u6237u8D44u6599
-            name =  data.get("name");
-            sex = data.get("gender");
-            icon = data.get("iconurl");
-            id = data.get("uid");
-            token = data.get("accessToken");
+            mId = data.get("uid");
+            mName =  data.get("name");
+            mSex = data.get("gender");
+            mIcon = data.get("iconurl");
+            mToken = data.get("accessToken");
         }
 
         public String getName() {
-            return name;
+            return mName;
         }
 
         public String getSex() {
-            return sex;
+            return mSex;
         }
 
         public String getIcon() {
-            return icon;
+            return mIcon;
         }
 
         public String getId() {
-            return id;
+            return mId;
         }
 
         public String getToken() {
-            return token;
+            return mToken;
+        }
+
+        /**
+         * 判断当前的性别是否为男性
+         */
+        public boolean isMan() {
+            return "男".equals(mSex);
         }
     }
 
