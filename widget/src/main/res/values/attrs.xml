@@ -84,6 +84,12 @@
         <attr name="scaleRatio" format="float" />
     </declare-styleable>
 
+    <!-- 按照比例显示的 FrameLayout -->
+    <declare-styleable name="RatioFrameLayout">
+        <!-- 宽高比例 -->
+        <attr name="sizeRatio" format="float" />
+    </declare-styleable>
+
     <!-- 以下是重用attr的正确姿势,一切为了在布局中可以自动提示-->
     <!-- 圆角矩形背景色 -->
     <attr name="rv_backgroundColor" format="color"/>
