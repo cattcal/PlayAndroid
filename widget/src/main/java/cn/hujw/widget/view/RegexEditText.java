@@ -30,6 +30,8 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
     public static final String REGEX_COUNT = "[1-9]\\d*";
     /** 用户名（中文、英文、数字） */
     public static final String REGEX_NAME = "[" + REGEX_CHINESE + "|" + REGEX_ENGLISH + "|" + "\\d*" + "]*";
+    /** 非空格的字符（不能输入空格） */
+    public static final String REGEX_NONNULL = "\\S+";
 
     /** 正则表达式规则 */
     private Pattern mPattern;
@@ -76,6 +78,9 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
                     case 0x05:
                         setInputRegex(REGEX_NAME);
                         break;
+                    case 0x06:
+                        setInputRegex(REGEX_NONNULL);
+                        break;
                     default:
                         break;
                 }
@@ -83,6 +88,27 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
         }
 
         array.recycle();
+    }
+
+    /**
+     * 是否有这个输入标记
+     */
+    public boolean hasInputType(int type) {
+        return (getInputType() & type) != 0;
+    }
+
+    /**
+     * 添加一个输入标记
+     */
+    public void addInputType(int type) {
+        setInputType(getInputType() | type);
+    }
+
+    /**
+     * 移除一个输入标记
+     */
+    public void removeInputType(int type) {
+        setInputType(getInputType() & ~type);
     }
 
     /**
@@ -95,6 +121,16 @@ public class RegexEditText extends AppCompatEditText implements InputFilter {
 
         mPattern = Pattern.compile(regex);
         addFilters(this);
+    }
+
+    /**
+     * 获取输入正则
+     */
+    public String getInputRegex() {
+        if (mPattern == null) {
+            return null;
+        }
+        return mPattern.pattern();
     }
 
     /**

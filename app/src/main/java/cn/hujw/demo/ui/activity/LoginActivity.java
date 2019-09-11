@@ -22,6 +22,7 @@ import cn.hujw.umeng.Platform;
 import cn.hujw.umeng.UmengClient;
 import cn.hujw.umeng.UmengLogin;
 import cn.hujw.widget.view.ClearEditText;
+import cn.hujw.widget.view.PasswordEditText;
 import cn.hujw.widget.view.ScaleImageView;
 import cn.hujw.wxapi.WXEntryActivity;
 
@@ -41,7 +42,7 @@ public final class LoginActivity extends MyActivity implements KeyboardWatcher.S
     @BindView(R.id.et_login_phone)
     ClearEditText mPhoneView;
     @BindView(R.id.et_login_password)
-    ClearEditText mPasswordView;
+    PasswordEditText mPasswordView;
     @BindView(R.id.btn_login_commit)
     AppCompatButton mCommitView;
 

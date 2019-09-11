@@ -50,16 +50,15 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp" />
 
-        <cn.hujw.widget.view.ClearEditText
+        <cn.hujw.widget.view.PasswordEditText
             android:id="@+id/et_login_password"
+            style="@style/EditTextStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            style="@style/EditTextStyle"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="16dp"
             android:hint="@string/common_password_input_error"
-            android:inputType="textPassword"
             android:maxLength="20"
             android:maxLines="1" />
 
